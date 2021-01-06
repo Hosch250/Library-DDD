@@ -6,7 +6,7 @@ namespace Library.Domain.Validators
 {
     public class ReturningBookValidator : AbstractValidator<ReturnBookCommand>
     {
-        public ReturningBookValidator(LibraryRepository repository)
+        public ReturningBookValidator(ILibraryRepository repository)
         {
             RuleFor(x => x.BookId)
                 .MustAsync(async (bookId, _) => await repository.GetBookAsync(bookId) is not null)

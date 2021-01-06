@@ -38,7 +38,7 @@ namespace Library
             services.AddOptions<FeatureFlags>().Configure<IConfiguration>((settings, config) => config.GetSection("FeatureFlags").Bind(settings));
 
             services.AddTransient<LibraryContext>();
-            services.AddTransient<LibraryRepository>();
+            services.AddTransient<ILibraryRepository, LibraryRepository>();
             services.AddTransient<IUserApplication, UserApplication>();
             services.AddTransient<IBookApplication, BookApplication>();
             services.AddTransient<UserFactory>();

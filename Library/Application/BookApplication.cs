@@ -7,9 +7,9 @@ namespace Library.Application
 {
     public class BookApplication : IBookApplication
     {
-        private readonly LibraryRepository libraryRepository;
+        private readonly ILibraryRepository libraryRepository;
 
-        public BookApplication(LibraryRepository libraryRepository)
+        public BookApplication(ILibraryRepository libraryRepository)
         {
             this.libraryRepository = libraryRepository;
         }

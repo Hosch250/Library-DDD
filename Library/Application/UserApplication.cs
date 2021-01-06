@@ -8,10 +8,10 @@ namespace Library.Application
 {
     public class UserApplication : IUserApplication
     {
-        private readonly LibraryRepository libraryRepository;
+        private readonly ILibraryRepository libraryRepository;
         private readonly UserFactory userFactory;
 
-        public UserApplication(LibraryRepository libraryRepository, UserFactory userFactory)
+        public UserApplication(ILibraryRepository libraryRepository, UserFactory userFactory)
         {
             this.libraryRepository = libraryRepository;
             this.userFactory = userFactory;

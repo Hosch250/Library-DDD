@@ -6,7 +6,7 @@ namespace Library.Domain.Validators
 {
     public class CheckingOutBookValidator : AbstractValidator<CheckoutBookCommand>
     {
-        public CheckingOutBookValidator(LibraryRepository repository)
+        public CheckingOutBookValidator(ILibraryRepository repository)
         {
             RuleFor(x => x.UserId)
                 .MustAsync(async (userId, _) =>
