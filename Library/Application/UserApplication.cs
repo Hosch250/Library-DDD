@@ -1,4 +1,5 @@
-﻿using Library.Domain.Entities.User;
+﻿using AutoMapper;
+using Library.Domain.Entities.User;
 using Library.Domain.Entities.User.Factories;
 using Library.Infrastructure.Storage;
 using System;
@@ -10,11 +11,13 @@ namespace Library.Application
     {
         private readonly ILibraryRepository libraryRepository;
         private readonly UserFactory userFactory;
+        private readonly IMapper mapper;
 
-        public UserApplication(ILibraryRepository libraryRepository, UserFactory userFactory)
+        public UserApplication(ILibraryRepository libraryRepository, UserFactory userFactory, IMapper mapper)
         {
             this.libraryRepository = libraryRepository;
             this.userFactory = userFactory;
+            this.mapper = mapper;
         }
 
         public async Task CheckoutBook(Guid userId, Guid bookId)
@@ -43,13 +46,13 @@ namespace Library.Application
             await libraryRepository.Update(user);
         }
 
-        public async Task<User> CreateUser(string name)
+        public async Task<ApiContracts.User> CreateUser(string name)
         {
             var user = await userFactory.CreateUserAsync(name);
 
             await libraryRepository.Insert(user);
 
-            return user;
+            return mapper.Map<User, ApiContracts.User>(user);
         }
     }
 }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using FluentValidation;
 using Library.Application;
 using Library.Domain;
@@ -50,6 +51,7 @@ namespace Library
                 .ForEach(f => services.AddTransient(f));
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             MongoDefaults.GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard;
         }
