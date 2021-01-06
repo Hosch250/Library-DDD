@@ -7,11 +7,11 @@ using MongoDB.Driver;
 
 namespace Library.Infrastructure.Storage
 {
-    public class MongoRepository<TDocument> : IRepository<TDocument>
+    public class Collection<TDocument> : ICollection<TDocument>
     {
         private readonly IMongoCollection<TDocument> collection;
 
-        public MongoRepository(IMongoCollection<TDocument> collection)
+        public Collection(IMongoCollection<TDocument> collection)
         {
             this.collection = collection;
         }
@@ -49,6 +49,11 @@ namespace Library.Infrastructure.Storage
         public IQueryable<TDocument> AsQueryable()
         {
             return collection.AsQueryable();
+        }
+
+        public IMongoCollection<TDocument> GetCollection()
+        {
+            return collection;
         }
     }
 }

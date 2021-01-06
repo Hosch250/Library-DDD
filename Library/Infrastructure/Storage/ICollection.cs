@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Infrastructure.Storage
 {
-    public interface IRepository<TDocument>
+    public interface ICollection<TDocument>
     {
         ValueTask Add(TDocument item);
         ValueTask AddRange(IEnumerable<TDocument> items);
@@ -15,5 +16,6 @@ namespace Library.Infrastructure.Storage
         ValueTask Remove(Expression<Func<TDocument, bool>> filter);
         ValueTask RemoveRange(Expression<Func<TDocument, bool>> filter);
         IQueryable<TDocument> AsQueryable();
+        IMongoCollection<TDocument> GetCollection();
     }
 }

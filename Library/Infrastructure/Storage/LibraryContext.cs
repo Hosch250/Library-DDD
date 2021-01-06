@@ -1,4 +1,5 @@
-﻿using Library.Infrastructure.Storage.Entities;
+﻿using Library.Domain.Entities.Book;
+using Library.Domain.Entities.User;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
@@ -23,11 +24,11 @@ namespace Library.Infrastructure.Storage
             var client = new MongoClient(mongoClientSettings);
             var database = client.GetDatabase("Library");
 
-            Book = new MongoRepository<BookEntity>(database.GetCollection<BookEntity>("Book"));
-            User = new MongoRepository<UserEntity>(database.GetCollection<UserEntity>("User"));
+            Book = new Collection<Book>(database.GetCollection<Book>("Book"));
+            User = new Collection<User>(database.GetCollection<User>("User"));
         }
 
-        public IRepository<BookEntity> Book { get; } = null!;
-        public IRepository<UserEntity> User { get; } = null!;
+        public ICollection<Book> Book { get; } = null!;
+        public ICollection<User> User { get; } = null!;
     }
 }

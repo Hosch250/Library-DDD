@@ -1,6 +1,6 @@
 ﻿using Library.Domain.Commands;
 using Library.Domain.Commands.Events.Events;
-using Library.Infrastructure.Storage.Entities;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +10,26 @@ namespace Library.Domain.Entities.User
 {
     public class User : AggregateRoot
     {
-        internal User() { }  // used for serialization
+        /// <summary>
+        /// Used for deserialization
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="isInGoodStanding"></param>
+        /// <param name="books"></param>
+        [BsonConstructor]
+        internal User(Guid id, string name, bool isInGoodStanding, List<CheckedOutBook> books)
+        {
+            Id = id;
+            Name = name;
+            IsInGoodStanding = isInGoodStanding;
+            this.books = books;
+        }
 
+        /// <summary>
+        /// Used by the UserFactory; prefer creating instances with that
+        /// </summary>
+        /// <param name="name"></param>
         internal User(string name)
         {
             Id = Guid.NewGuid();
@@ -23,6 +41,7 @@ namespace Library.Domain.Entities.User
         public string Name { get; private set; }
         public bool IsInGoodStanding { get; private set; }
 
+        [BsonElement(nameof(Books))]
         private readonly List<CheckedOutBook> books = new();
         public IReadOnlyCollection<CheckedOutBook> Books => books.AsReadOnly();
 

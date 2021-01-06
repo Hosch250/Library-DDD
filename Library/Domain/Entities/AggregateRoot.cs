@@ -1,5 +1,4 @@
-﻿using Library.Infrastructure.Storage.Entities;
-using System;
+﻿using System;
 
 namespace Library.Domain.Entities
 {
