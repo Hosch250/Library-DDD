@@ -1,7 +1,9 @@
 ﻿using Library.Domain.Entities.Book;
 using Library.Domain.Entities.User;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Core.Events;
 
 namespace Library.Infrastructure.Storage
 {
@@ -13,7 +15,7 @@ namespace Library.Infrastructure.Storage
             var mongoConnectionUrl = new MongoUrl(connectionString);
             var mongoClientSettings = MongoClientSettings.FromUrl(mongoConnectionUrl);
 
-#if Debug
+#if DEBUG
             mongoClientSettings.ClusterConfigurator = cb => {
                 cb.Subscribe<CommandStartedEvent>(e => {
                     System.Diagnostics.Debug.WriteLine($"{e.CommandName} - {e.Command.ToJson()}");
