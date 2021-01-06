@@ -16,8 +16,10 @@ namespace Library.Infrastructure.Storage
             var mongoClientSettings = MongoClientSettings.FromUrl(mongoConnectionUrl);
 
 #if DEBUG
-            mongoClientSettings.ClusterConfigurator = cb => {
-                cb.Subscribe<CommandStartedEvent>(e => {
+            mongoClientSettings.ClusterConfigurator = cb =>
+            {
+                cb.Subscribe<CommandStartedEvent>(e =>
+                {
                     System.Diagnostics.Debug.WriteLine($"{e.CommandName} - {e.Command.ToJson()}");
                 });
             };
@@ -26,11 +28,11 @@ namespace Library.Infrastructure.Storage
             var client = new MongoClient(mongoClientSettings);
             var database = client.GetDatabase("Library");
 
-            Book = new Collection<Book>(database.GetCollection<Book>("Book"));
-            User = new Collection<User>(database.GetCollection<User>("User"));
+            Book = database.GetCollection<Book>("Book");
+            User = database.GetCollection<User>("User");
         }
 
-        public ICollection<Book> Book { get; } = null!;
-        public ICollection<User> User { get; } = null!;
+        public IMongoCollection<Book> Book { get; } = null!;
+        public IMongoCollection<User> User { get; } = null!;
     }
 }

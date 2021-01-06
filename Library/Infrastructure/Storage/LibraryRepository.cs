@@ -1,7 +1,6 @@
 ﻿using Library.Domain.Entities;
 using Library.Domain.Entities.Book;
 using Library.Domain.Entities.User;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Infrastructure.Storage
 {
-    public class LibraryRepository
+    public class LibraryRepository : ILibraryRepository
     {
         private readonly LibraryContext libraryContext;
 
@@ -31,10 +30,9 @@ namespace Library.Infrastructure.Storage
 
         public async Task<bool> IsBookCheckedOut(Guid bookId)
         {
-            var collection = libraryContext.User.GetCollection();
             var filter = Builders<User>.Filter.AnyEq($"{nameof(User.Books)}.{nameof(CheckedOutBook.BookId)}", bookId);
 
-            return await collection.CountDocumentsAsync(filter) > 0;
+            return await libraryContext.User.CountDocumentsAsync(filter) > 0;
         }
 
         public async Task<User?> GetUserAsync(Guid userId)
@@ -47,10 +45,10 @@ namespace Library.Infrastructure.Storage
             switch (model)
             {
                 case Book book:
-                    await libraryContext.Book.Update(b => b.Id == book.Id, book);
+                    await libraryContext.Book.ReplaceOneAsync(b => b.Id == book.Id, book);
                     break;
                 case User user:
-                    await libraryContext.User.Update(u => u.Id == user.Id, user);
+                    await libraryContext.User.ReplaceOneAsync(u => u.Id == user.Id, user);
                     break;
                 default:
                     throw new NotImplementedException();
@@ -62,10 +60,10 @@ namespace Library.Infrastructure.Storage
             switch (model)
             {
                 case Book book:
-                    await libraryContext.Book.Add(book);
+                    await libraryContext.Book.InsertOneAsync(book);
                     break;
                 case User user:
-                    await libraryContext.User.Add(user);
+                    await libraryContext.User.InsertOneAsync(user);
                     break;
                 default:
                     throw new NotImplementedException();
