@@ -3,6 +3,7 @@ using FluentValidation;
 using Library.Application;
 using Library.Domain;
 using Library.Domain.Entities.User.Factories;
+using Library.GraphQL;
 using Library.Infrastructure.Configuration;
 using Library.Infrastructure.Storage;
 using MediatR;
@@ -54,6 +55,11 @@ namespace Library
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             MongoDefaults.GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard;
+
+            services
+                .AddGraphQLServer()
+                .AddQueryType<Query>()
+                .AddMutationType<Mutation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,8 +68,8 @@ namespace Library
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Library v1"));
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Library v1"));
             }
 
             app.UseHttpsRedirection();
@@ -74,7 +80,9 @@ namespace Library
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapGraphQL();
+                endpoints.MapBananaCakePop();
             });
 
             var serviceProvider = app.ApplicationServices;
