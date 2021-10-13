@@ -1,0 +1,200 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  allBooks("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: BookFilterInput order: [BookSortInput!]): AllBooksConnection
+  book(id: UUID!): Book
+  user(id: UUID!): User
+}
+
+type Mutation {
+  createUser(name: String!): User
+  checkoutBook(userId: UUID! bookId: UUID!): User
+  returnBook(userId: UUID! bookId: UUID!): User
+}
+
+input BookFilterInput {
+  and: [BookFilterInput!]
+  or: [BookFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  isbn: StringOperationFilterInput
+  name: StringOperationFilterInput
+  publishedOn: ComparableDateTimeOperationFilterInput
+  publisher: PublishingHouseFilterInput
+  authors: ListFilterInputTypeOfAuthorFilterInput
+  auditInfo_CreatedBy: StringOperationFilterInput
+  auditInfo_CreatedOn: ComparableDateTimeOperationFilterInput
+}
+
+input BookSortInput {
+  id: SortEnumType
+  isbn: SortEnumType
+  name: SortEnumType
+  publishedOn: SortEnumType
+  publisher: PublishingHouseSortInput
+  auditInfo_CreatedBy: SortEnumType
+  auditInfo_CreatedOn: SortEnumType
+}
+
+"A connection to a list of items."
+type AllBooksConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [AllBooksEdge!]
+  "A flattened list of the nodes."
+  nodes: [Book!]
+}
+
+input ComparableGuidOperationFilterInput {
+  eq: UUID
+  neq: UUID
+  in: [UUID!]
+  nin: [UUID!]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input ComparableDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime!]
+  nin: [DateTime!]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input PublishingHouseFilterInput {
+  and: [PublishingHouseFilterInput!]
+  or: [PublishingHouseFilterInput!]
+  name: StringOperationFilterInput
+}
+
+input ListFilterInputTypeOfAuthorFilterInput {
+  all: AuthorFilterInput
+  none: AuthorFilterInput
+  some: AuthorFilterInput
+  any: Boolean
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+input PublishingHouseSortInput {
+  name: SortEnumType
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+type Book {
+  id: UUID!
+  isbn: String!
+  name: String!
+  publishedOn: DateTime!
+  publisher: PublishingHouse!
+  authors: [Author!]!
+  auditInfo_CreatedBy: String!
+  auditInfo_CreatedOn: DateTime!
+}
+
+"An edge in a connection."
+type AllBooksEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Book!
+}
+
+input AuthorFilterInput {
+  and: [AuthorFilterInput!]
+  or: [AuthorFilterInput!]
+  name: StringOperationFilterInput
+  birthDate: ComparableNullableOfDateTimeOperationFilterInput
+  deathDate: ComparableNullableOfDateTimeOperationFilterInput
+}
+
+input ComparableNullableOfDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+scalar UUID
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
+
+type User {
+  id: UUID!
+  name: String!
+  isInGoodStanding: Boolean!
+  books: [CheckedOutBook!]!
+  auditInfo_CreatedBy: String!
+  auditInfo_CreatedOn: DateTime!
+}
+
+type PublishingHouse {
+  name: String!
+}
+
+type Author {
+  name: String!
+  birthDate: DateTime
+  deathDate: DateTime
+}
+
+type CheckedOutBook {
+  bookId: UUID!
+  checkedOutOn: DateTime!
+  returnBy: DateTime!
+}

@@ -1,0 +1,13 @@
+query AllBooks {
+  allBooks(order: [{ name: ASC }], last: 10) {
+    nodes {
+      id isbn name authors { name }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}
