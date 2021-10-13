@@ -2,6 +2,7 @@ using AutoMapper;
 using FluentValidation;
 using Library.Application;
 using Library.Domain;
+using Library.Domain.Entities.Book;
 using Library.Domain.Entities.User.Factories;
 using Library.GraphQL;
 using Library.Infrastructure.Configuration;
@@ -56,10 +57,24 @@ namespace Library
 
             MongoDefaults.GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard;
 
+            services.AddSingleton(sp =>
+            {
+                return sp.GetRequiredService<LibraryContext>().Book;
+            });
+
+            services.AddSingleton(sp =>
+            {
+                return sp.GetRequiredService<LibraryContext>().User;
+            });
+
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddMutationType<Mutation>();
+                .AddMutationType<Mutation>()
+                .AddMongoDbFiltering()
+                .AddMongoDbSorting()
+                .AddMongoDbProjections()
+                .AddMongoDbPagingProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

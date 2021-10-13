@@ -4,6 +4,10 @@ namespace Library.Domain.Entities.Book
 {
     public class Author
     {
+        //internal Author()
+        //{
+        //}
+
         public Author(string name, DateTime? birthDate, DateTime? deathDate)
         {
             Name = name;
@@ -11,8 +15,8 @@ namespace Library.Domain.Entities.Book
             DeathDate = deathDate;
         }
 
-        public string Name { get; private set; }
-        public DateTime? BirthDate { get; private set; }
-        public DateTime? DeathDate { get; private set; }
+        public string Name { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public DateTime? DeathDate { get; set; }
     }
 }

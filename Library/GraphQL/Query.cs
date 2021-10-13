@@ -1,7 +1,12 @@
-﻿using Library.ApiContracts;
+﻿using HotChocolate;
+using HotChocolate.Data;
+using HotChocolate.Types;
 using Library.Application;
+using Library.Domain.Entities.Book;
+using Library.Domain.Entities.User;
 using Library.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,47 +16,71 @@ namespace Library.GraphQL
     public class Query
     {
         private readonly FeatureFlags featureFlags;
-        private readonly IBookApplication bookApplication;
-        private readonly IUserApplication userApplication;
 
-        public Query(IOptions<FeatureFlags> featureFlags, IBookApplication bookApplication, IUserApplication userApplication)
+        public Query(IOptions<FeatureFlags> featureFlags)
         {
             this.featureFlags = featureFlags.Value;
-            this.bookApplication = bookApplication;
-            this.userApplication = userApplication;
         }
 
-        public async Task<List<Book>> GetAllBooks()
+        [UsePaging]
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IExecutable<Book> GetAllBooks([Service] IMongoCollection<Book> collection)
+        {
+            if (!featureFlags.EnableBook)
+            {
+                throw new NotImplementedException("Query not implemented");
+            }
+            
+            return collection.AsExecutable();
+        }
+
+        [UseFirstOrDefault]
+        public IExecutable<Book> GetBook(
+            [Service] IMongoCollection<Book> collection,
+            Guid id)
         {
             if (!featureFlags.EnableBook)
             {
                 throw new NotImplementedException("Query not implemented");
             }
 
-            var books = await bookApplication.GetAll();
-            return books;
+            return collection.Find(x => x.Id == id).AsExecutable();
         }
 
-        public async Task<Book?> GetBook(Guid bookId)
-        {
-            if (!featureFlags.EnableBook)
-            {
-                throw new NotImplementedException("Query not implemented");
-            }
+        //public async Task<List<Book>> GetAllBooks()
+        //{
+        //    if (!featureFlags.EnableBook)
+        //    {
+        //        throw new NotImplementedException("Query not implemented");
+        //    }
 
-            var book = await bookApplication.Get(bookId);
-            return book;
-        }
+        //    var books = await bookApplication.GetAll();
+        //    return books;
+        //}
 
-        public async Task<User?> GetUser(Guid userId)
+        //public async Task<Book?> GetBook(Guid bookId)
+        //{
+        //    if (!featureFlags.EnableBook)
+        //    {
+        //        throw new NotImplementedException("Query not implemented");
+        //    }
+
+        //    var book = await bookApplication.Get(bookId);
+        //    return book;
+        //}
+
+        [UseFirstOrDefault]
+        public IExecutable<User> GetUser(
+            [Service] IMongoCollection<User> collection, Guid id)
         {
             if (!featureFlags.EnableUser)
             {
                 throw new NotImplementedException("Query not implemented");
             }
 
-            var user = await userApplication.Get(userId);
-            return user;
+            return collection.Find(x => x.Id == id).AsExecutable();
         }
     }
 }
