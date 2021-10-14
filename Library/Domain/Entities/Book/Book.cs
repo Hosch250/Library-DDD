@@ -7,14 +7,6 @@ namespace Library.Domain.Entities.Book
     public class Book : AggregateRoot
     {
         /// <summary>
-        /// Used for graphql projections
-        /// </summary>
-        [BsonConstructor]
-        internal Book()
-        {
-        }
-
-        /// <summary>
         /// Used for deserialization
         /// </summary>
         /// <param name="id"></param>
@@ -34,20 +26,20 @@ namespace Library.Domain.Entities.Book
             this.authors = authors;
         }
 
-        //public Book(string isbn, string name, PublishingHouse publisher, List<Author> authors)
-        //{
-        //    Id = Guid.NewGuid();
-        //    Isbn = isbn;
-        //    Name = name;
-        //    Publisher = publisher;
-        //    this.authors = authors;
-        //}
+        public Book(string isbn, string name, PublishingHouse publisher, List<Author> authors)
+        {
+            Id = Guid.NewGuid();
+            Isbn = isbn;
+            Name = name;
+            Publisher = publisher;
+            this.authors = authors;
+        }
 
-        public Guid Id { get; set; }
-        public string Isbn { get; set; }
-        public string Name { get; set; }
-        public DateTime PublishedOn { get; set; }
-        public PublishingHouse Publisher { get; set; }
+        public Guid Id { get; private set; }
+        public string Isbn { get; private set; }
+        public string Name { get; private set; }
+        public DateTime PublishedOn { get; private set; }
+        public PublishingHouse Publisher { get; private set; }
 
         [BsonElement(nameof(Authors))]
         private readonly List<Author> authors = new();

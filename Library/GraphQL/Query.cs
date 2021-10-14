@@ -1,5 +1,6 @@
 ﻿using HotChocolate;
 using HotChocolate.Data;
+using HotChocolate.Execution;
 using HotChocolate.Types;
 using Library.ApiContracts;
 using Library.Infrastructure.Configuration;
@@ -26,7 +27,7 @@ namespace Library.GraphQL
         {
             if (!featureFlags.EnableBook)
             {
-                throw new NotImplementedException("Query not implemented");
+                throw new QueryException("Query not implemented");
             }
             
             return collection.AsExecutable();
@@ -40,7 +41,7 @@ namespace Library.GraphQL
         {
             if (!featureFlags.EnableBook)
             {
-                throw new NotImplementedException("Query not implemented");
+                throw new QueryException("Query not implemented");
             }
 
             return collection.Find(x => x.Id == id).AsExecutable();
@@ -75,7 +76,7 @@ namespace Library.GraphQL
         {
             if (!featureFlags.EnableUser)
             {
-                throw new NotImplementedException("Query not implemented");
+                throw new QueryException("Query not implemented");
             }
 
             return collection.Find(x => x.Id == id).AsExecutable();
