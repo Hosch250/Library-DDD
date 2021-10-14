@@ -34,14 +34,14 @@ namespace Library.Domain.Entities.Book
             this.authors = authors;
         }
 
-        public Book(string isbn, string name, PublishingHouse publisher, List<Author> authors)
-        {
-            Id = Guid.NewGuid();
-            Isbn = isbn;
-            Name = name;
-            Publisher = publisher;
-            this.authors = authors;
-        }
+        //public Book(string isbn, string name, PublishingHouse publisher, List<Author> authors)
+        //{
+        //    Id = Guid.NewGuid();
+        //    Isbn = isbn;
+        //    Name = name;
+        //    Publisher = publisher;
+        //    this.authors = authors;
+        //}
 
         public Guid Id { get; set; }
         public string Isbn { get; set; }

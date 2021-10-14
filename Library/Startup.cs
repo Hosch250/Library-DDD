@@ -59,12 +59,12 @@ namespace Library
 
             services.AddSingleton(sp =>
             {
-                return sp.GetRequiredService<LibraryContext>().Book;
+                return sp.GetRequiredService<LibraryContext>().BookDto;
             });
 
             services.AddSingleton(sp =>
             {
-                return sp.GetRequiredService<LibraryContext>().User;
+                return sp.GetRequiredService<LibraryContext>().UserDto;
             });
 
             services

@@ -1,15 +1,11 @@
 ﻿using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Types;
-using Library.Application;
-using Library.Domain.Entities.Book;
-using Library.Domain.Entities.User;
+using Library.ApiContracts;
 using Library.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Library.GraphQL
 {
@@ -37,6 +33,7 @@ namespace Library.GraphQL
         }
 
         [UseFirstOrDefault]
+        [UseProjection]
         public IExecutable<Book> GetBook(
             [Service] IMongoCollection<Book> collection,
             Guid id)
@@ -72,6 +69,7 @@ namespace Library.GraphQL
         //}
 
         [UseFirstOrDefault]
+        [UseProjection]
         public IExecutable<User> GetUser(
             [Service] IMongoCollection<User> collection, Guid id)
         {

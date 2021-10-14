@@ -1,8 +1,8 @@
 ﻿using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Execution;
+using Library.ApiContracts;
 using Library.Application;
-using Library.Domain.Entities.User;
 using Library.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -25,6 +25,7 @@ namespace Library.GraphQL
         }
 
         [UseFirstOrDefault]
+        [UseProjection]
         public async Task<IExecutable<User>> CreateUser([Service] IMongoCollection<User> collection, string name)
         {
             if (!featureFlags.EnableUser)
@@ -45,6 +46,7 @@ namespace Library.GraphQL
         }
 
         [UseFirstOrDefault]
+        [UseProjection]
         public async Task<IExecutable<User>> CheckoutBook([Service] IMongoCollection<User> collection, Guid userId, Guid bookId)
         {
             if (!featureFlags.EnableUser)
@@ -65,6 +67,7 @@ namespace Library.GraphQL
         }
 
         [UseFirstOrDefault]
+        [UseProjection]
         public async Task<IExecutable<User>> ReturnBook([Service] IMongoCollection<User> collection, Guid userId, Guid bookId)
         {
             if (!featureFlags.EnableUser)

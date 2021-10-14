@@ -30,9 +30,15 @@ namespace Library.Infrastructure.Storage
 
             Book = database.GetCollection<Book>("Book");
             User = database.GetCollection<User>("User");
+
+            BookDto = database.GetCollection<ApiContracts.Book>("Book");
+            UserDto = database.GetCollection<ApiContracts.User>("User");
         }
 
         public IMongoCollection<Book> Book { get; } = null!;
         public IMongoCollection<User> User { get; } = null!;
+
+        public IMongoCollection<ApiContracts.Book> BookDto { get; } = null!;
+        public IMongoCollection<ApiContracts.User> UserDto { get; } = null!;
     }
 }
