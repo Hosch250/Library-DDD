@@ -20,6 +20,17 @@ namespace Library.Application
             this.mapper = mapper;
         }
 
+        public async Task<ApiContracts.User?> GetUser(Guid id)
+        {
+            var user = await libraryRepository.GetUserAsync(id);
+            if (user is null)
+            {
+                return null;
+            }
+
+            return mapper.Map<User, ApiContracts.User>(user);
+        }
+
         public async Task CheckoutBook(Guid userId, Guid bookId)
         {
             var user = await libraryRepository.GetUserAsync(userId);
