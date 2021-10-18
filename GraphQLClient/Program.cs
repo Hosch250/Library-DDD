@@ -25,8 +25,8 @@ namespace GraphQLClient
             var result = await client.AllBooks.ExecuteAsync();
             var data = result.Data;
 
-            var result1 = await client.CreateUser.ExecuteAsync("abcd");
-            var data1 = result1.Data;
+            //var result1 = await client.CreateUser.ExecuteAsync("abcd");
+            //var data1 = result1.Data;
         }
     }
 }
