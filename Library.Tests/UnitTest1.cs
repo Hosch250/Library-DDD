@@ -47,8 +47,8 @@ namespace Library.Tests
 
             var services = new ServiceCollection();
             var builder = new ConfigurationBuilder()
-     .SetBasePath(Environment.CurrentDirectory) //<--You would need to set the path
-     .AddJsonFile("appsettings.Development.json"); //or what ever file you have the settings
+                .SetBasePath(Environment.CurrentDirectory)
+                .AddJsonFile("appsettings.Development.json");
 
             var configuration = builder.Build();
 
