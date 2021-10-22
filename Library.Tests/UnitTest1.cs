@@ -1,5 +1,6 @@
 using HotChocolate;
 using HotChocolate.Execution;
+using HotChocolate.Execution.Configuration;
 using Library.GraphQL;
 using Library.Infrastructure.Configuration;
 using Library.Infrastructure.Storage;
@@ -54,29 +55,16 @@ namespace Library.Tests
 
             services.AddScoped<IConfiguration>(_ => configuration);
 
-            services.AddOptions<FeatureFlags>().Configure<IConfiguration>((settings, config) => config.GetSection("FeatureFlags").Bind(settings));
-            services.AddTransient<LibraryContext>();
-            services.AddSingleton(sp =>
-            {
-                return sp.GetRequiredService<LibraryContext>().BookDto;
-            });
+            new Startup().ConfigureServices(services);
 
-            IRequestExecutor executor =
-                await services
-                .AddGraphQLServer()
-                .AddQueryType<Query>()
-                .AddMutationType<Mutation>()
-                .AddMongoDbFiltering()
-                .AddMongoDbSorting()
-                .AddMongoDbProjections()
-                .AddMongoDbPagingProviders()
-                .BuildRequestExecutorAsync();
+            var provider = services.BuildServiceProvider();
+            IRequestExecutor executor = await provider.GetRequestExecutorAsync();
 
             IExecutionResult result =
                 await executor.ExecuteAsync(booksQuery);
 
             var json = result.ToJson();
-            var data = JsonSerializer.Deserialize<Result>(json);
+            var data = JsonSerializer.Deserialize<Result>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.AreEqual(3, data.data.allBooks.nodes.Count);
         }
     }
