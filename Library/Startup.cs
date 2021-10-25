@@ -1,10 +1,11 @@
-using AutoMapper;
 using FluentValidation;
+using HotChocolate;
 using Library.Application;
 using Library.Domain;
 using Library.Domain.Entities.User.Factories;
 using Library.GraphQL;
 using Library.Infrastructure.Configuration;
+using Library.Infrastructure.ErrorFilters;
 using Library.Infrastructure.Storage;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -60,7 +61,11 @@ namespace Library
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddTypeExtension<QueryBookResolvers>()
-                .AddTypeExtension<QueryUserResolvers>();
+                .AddTypeExtension<QueryUserResolvers>()
+                .AddMutationType<Mutation>()
+                .AddTypeExtension<MutationUserResolvers>()
+                .AddErrorFilter<ValidationErrorFilter>()
+                .AddErrorFilter<NotImplementedErrorFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
