@@ -64,6 +64,7 @@ namespace Library
                 .AddTypeExtension<QueryUserResolvers>()
                 .AddMutationType<Mutation>()
                 .AddTypeExtension<MutationUserResolvers>()
+                .AddTypeExtension<UserExtensions>()
                 .AddErrorFilter<ValidationErrorFilter>()
                 .AddErrorFilter<NotImplementedErrorFilter>();
         }

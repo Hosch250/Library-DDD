@@ -18,7 +18,7 @@ namespace Library.Infrastructure.Storage
             this.libraryContext = libraryContext;
         }
 
-        public async Task<List<Book>> GetAllBooksAsync()
+        public async Task<IReadOnlyList<Book>> GetAllBooksAsync()
         {
             return await libraryContext.Book.AsQueryable().ToListAsync();
         }
@@ -26,6 +26,11 @@ namespace Library.Infrastructure.Storage
         public async Task<Book?> GetBookAsync(Guid bookId)
         {
             return await libraryContext.Book.AsQueryable().FirstOrDefaultAsync(f => f.Id == bookId);
+        }
+
+        public async Task<IReadOnlyList<Book>> GetBooksAsync(IReadOnlyList<Guid> ids)
+        {
+            return await libraryContext.Book.AsQueryable().Where(f => ids.Contains(f.Id)).ToListAsync();
         }
 
         public async Task<bool> IsBookCheckedOut(Guid bookId)
@@ -38,6 +43,11 @@ namespace Library.Infrastructure.Storage
         public async Task<User?> GetUserAsync(Guid userId)
         {
             return await libraryContext.User.AsQueryable().FirstOrDefaultAsync(f => f.Id == userId);
+        }
+
+        public async Task<IReadOnlyList<User>> GetUsersAsync(IReadOnlyList<Guid> ids)
+        {
+            return await libraryContext.User.AsQueryable().Where(f => ids.Contains(f.Id)).ToListAsync();
         }
 
         public async Task Update<T>(T model) where T : AggregateRoot

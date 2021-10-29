@@ -1,25 +1,20 @@
-using Library.ApiContracts;
+﻿using Library.ApiContracts;
 using Library.Application;
 using Library.GraphQL;
 using Library.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
 using Moq;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace Library.Tests
 {
-    public class Tests
+    public class UnitTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
-        [Test]
-        public void Test1()
+        [Fact]
+        public void Disabled()
         {
             var options = Options.Create(new FeatureFlags
             {
@@ -27,12 +22,11 @@ namespace Library.Tests
             });
 
             var resolver = new QueryBookResolvers(options, null);
-
             Assert.ThrowsAsync<NotImplementedException>(() => resolver.GetAllBooks());
         }
 
-        [Test]
-        public async Task Test2()
+        [Fact]
+        public async Task ReturnsBooks()
         {
             var options = Options.Create(new FeatureFlags
             {
@@ -47,7 +41,7 @@ namespace Library.Tests
 
             var resolver = new QueryBookResolvers(options, bookApp.Object);
             var books = await resolver.GetAllBooks();
-            Assert.AreEqual(1, books.Count);
+            Assert.Single(books);
         }
     }
 }

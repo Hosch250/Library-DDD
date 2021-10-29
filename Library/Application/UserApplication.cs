@@ -3,6 +3,8 @@ using Library.Domain.Entities.User;
 using Library.Domain.Entities.User.Factories;
 using Library.Infrastructure.Storage;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Library.Application
@@ -29,6 +31,12 @@ namespace Library.Application
             }
 
             return mapper.Map<User, ApiContracts.User>(user);
+        }
+
+        public async Task<IReadOnlyList<ApiContracts.User>> GetUsers(IReadOnlyList<Guid> ids)
+        {
+            var users = await libraryRepository.GetUsersAsync(ids);
+            return users.Select(mapper.Map<User, ApiContracts.User>).ToList();
         }
 
         public async Task CheckoutBook(Guid userId, Guid bookId)

@@ -1,10 +1,13 @@
-﻿using HotChocolate.Types;
+﻿using HotChocolate;
+using HotChocolate.Resolvers;
+using HotChocolate.Types;
 using Library.ApiContracts;
 using Library.Application;
 using Library.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Library.GraphQL
@@ -49,15 +52,20 @@ namespace Library.GraphQL
             this.userApplication = userApplication;
         }
 
-        public async Task<User?> GetUser(Guid id)
+        public async Task<User?> GetUser(Guid id, IResolverContext context)
         {
             if (!featureFlags.EnableUser)
             {
                 throw new NotImplementedException("Query not implemented");
             }
 
-            var user = await userApplication.GetUser(id);
-            return user;
+            return await context.BatchDataLoader<Guid, User>(
+                async (keys, ct) =>
+                {
+                    var users = await userApplication.GetUsers(keys);
+                    return users.ToDictionary(x => x.Id);
+                })
+            .LoadAsync(id);
         }
     }
 }
