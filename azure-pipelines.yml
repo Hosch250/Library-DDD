@@ -27,7 +27,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'if exist bin\Release\net5.0\Library.dll echo "exists"'
+    script: 'dir /b /a /s'
 
 - task: PowerShell@2
   inputs:
