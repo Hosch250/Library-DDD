@@ -27,9 +27,9 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'find . -type f'
+    script: 'ls bin -R'
 
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'swagger tofile --output swagger.json Library\bin\Release\net5.0\Library.dll v1'
+    script: 'swagger tofile --output swagger.json ./Library/bin/Release/net5.0/Library.dll v1'
