@@ -28,4 +28,4 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'dotnet tool run swagger tofile --output swagger.json bin\Release\net5.0\Library.dll v1'
+    script: 'swagger tofile --output swagger.json bin\Release\net5.0\Library.dll v1'
