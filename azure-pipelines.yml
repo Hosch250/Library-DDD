@@ -27,7 +27,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'ls bin -R'
+    script: 'ls Library/bin -R'
 
 - task: PowerShell@2
   inputs:
