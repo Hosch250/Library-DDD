@@ -27,7 +27,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'ls -b -a'
+    script: 'find . -type f'
 
 - task: PowerShell@2
   inputs:
