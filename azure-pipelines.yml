@@ -25,6 +25,10 @@ steps:
     targetType: 'inline'
     script: 'dotnet tool install Swashbuckle.AspNetCore.Cli -g --version 6.2.3'
 
+- task: CmdLine@2
+  inputs:
+    script: 'if exist bin\Release\net5.0\Library.dll echo "exists"'
+
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
