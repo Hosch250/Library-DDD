@@ -26,6 +26,7 @@ namespace Library
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library", Version = "v1" });
@@ -83,6 +84,12 @@ namespace Library
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(a => {
+                a.AllowAnyOrigin();
+                a.AllowAnyHeader();
+                a.AllowAnyMethod();
+            });
 
             app.UseRouting();
 

@@ -1,5 +1,6 @@
-import { graphql, useFragment } from 'react-relay'
+import { useFragment } from 'react-relay'
 import { BooksPage_query$key } from './__generated__/BooksPage_query.graphql'
+import { graphql } from 'babel-plugin-relay/macro';
 
 interface Props {
   query: BooksPage_query$key | null

@@ -1,6 +1,6 @@
 import './App.css'
 import {
-  graphql,
+  loadQuery,
   PreloadedQuery,
   QueryRenderer,
   usePreloadedQuery,
@@ -9,6 +9,7 @@ import {
 import BooksPage from './BooksPage'
 import environment from './relay-env'
 import type {App_Query} from './__generated__/App_Query.graphql';
+import { graphql } from 'babel-plugin-relay/macro';
 
 const query = graphql`
   query App_Query {
@@ -18,16 +19,11 @@ const query = graphql`
   }
 `
 
-interface Props {
-  preloadedQuery: PreloadedQuery<App_Query>
-}
+const preloadedQuery = loadQuery<App_Query>(environment, query, {
+  /* query variables */
+})
 
-// const preloadedQuery = loadQuery<AppQueryType>(environment, query, {
-//   /* query variables */
-// })
-
-function App({ preloadedQuery }: Props) {
-  //const data = usePreloadedQuery(query, preloadedQuery)
+function App() {
   const data = usePreloadedQuery<App_Query>(query, preloadedQuery);
 
   return (
@@ -38,17 +34,12 @@ function App({ preloadedQuery }: Props) {
 }
 
 function AppRoot() {
-  const [queryReference, loadQuery] = useQueryLoader<App_Query>(
-    query
-  );
-
-  loadQuery({})
 
   return (
     <QueryRenderer
       environment={environment}
       query={query}
-      render={() => queryReference && <App preloadedQuery={queryReference} />}
+      render={() => <App />}
       variables={{}}
     />
   )
