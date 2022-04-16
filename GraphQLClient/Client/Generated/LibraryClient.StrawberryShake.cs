@@ -3,7 +3,7 @@
 
 namespace GraphQLClient.Client
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooksResult : global::System.IEquatable<AllBooksResult>, IAllBooksResult
     {
         public AllBooksResult(global::GraphQLClient.Client.IAllBooks_AllBooks? allBooks)
@@ -71,7 +71,7 @@ namespace GraphQLClient.Client
     /// <summary>
     /// A connection to a list of items.
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooks_AllBooks_AllBooksConnection : global::System.IEquatable<AllBooks_AllBooks_AllBooksConnection>, IAllBooks_AllBooks_AllBooksConnection
     {
         public AllBooks_AllBooks_AllBooksConnection(global::System.Collections.Generic.IReadOnlyList<global::GraphQLClient.Client.IAllBooks_AllBooks_Nodes>? nodes, global::GraphQLClient.Client.IAllBooks_AllBooks_PageInfo pageInfo)
@@ -149,7 +149,7 @@ namespace GraphQLClient.Client
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooks_AllBooks_Nodes_Book : global::System.IEquatable<AllBooks_AllBooks_Nodes_Book>, IAllBooks_AllBooks_Nodes_Book
     {
         public AllBooks_AllBooks_Nodes_Book(global::System.Guid id, global::System.String isbn, global::System.String name, global::System.Collections.Generic.IReadOnlyList<global::GraphQLClient.Client.IAllBooks_AllBooks_Nodes_Authors> authors)
@@ -229,7 +229,7 @@ namespace GraphQLClient.Client
     /// <summary>
     /// Information about pagination in a connection.
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooks_AllBooks_PageInfo_PageInfo : global::System.IEquatable<AllBooks_AllBooks_PageInfo_PageInfo>, IAllBooks_AllBooks_PageInfo_PageInfo
     {
         public AllBooks_AllBooks_PageInfo_PageInfo(global::System.String? endCursor, global::System.Boolean hasNextPage, global::System.Boolean hasPreviousPage, global::System.String? startCursor)
@@ -322,7 +322,7 @@ namespace GraphQLClient.Client
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooks_AllBooks_Nodes_Authors_Author : global::System.IEquatable<AllBooks_AllBooks_Nodes_Authors_Author>, IAllBooks_AllBooks_Nodes_Authors_Author
     {
         public AllBooks_AllBooks_Nodes_Authors_Author(global::System.String name)
@@ -383,8 +383,8 @@ namespace GraphQLClient.Client
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooksResult
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooksResult
     {
         public global::GraphQLClient.Client.IAllBooks_AllBooks? AllBooks { get; }
     }
@@ -392,8 +392,8 @@ namespace GraphQLClient.Client
     /// <summary>
     /// A connection to a list of items.
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks
     {
         /// <summary>
         /// A flattened list of the nodes.
@@ -409,13 +409,13 @@ namespace GraphQLClient.Client
     /// <summary>
     /// A connection to a list of items.
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks_AllBooksConnection : IAllBooks_AllBooks
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks_AllBooksConnection : IAllBooks_AllBooks
     {
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks_Nodes
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks_Nodes
     {
         public global::System.Guid Id { get; }
 
@@ -426,16 +426,16 @@ namespace GraphQLClient.Client
         public global::System.Collections.Generic.IReadOnlyList<global::GraphQLClient.Client.IAllBooks_AllBooks_Nodes_Authors> Authors { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks_Nodes_Book : IAllBooks_AllBooks_Nodes
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks_Nodes_Book : IAllBooks_AllBooks_Nodes
     {
     }
 
     /// <summary>
     /// Information about pagination in a connection.
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks_PageInfo
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks_PageInfo
     {
         /// <summary>
         /// When paginating forwards, the cursor to continue.
@@ -461,23 +461,23 @@ namespace GraphQLClient.Client
     /// <summary>
     /// Information about pagination in a connection.
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks_PageInfo_PageInfo : IAllBooks_AllBooks_PageInfo
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks_PageInfo_PageInfo : IAllBooks_AllBooks_PageInfo
     {
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks_Nodes_Authors
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks_Nodes_Authors
     {
         public global::System.String Name { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooks_AllBooks_Nodes_Authors_Author : IAllBooks_AllBooks_Nodes_Authors
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooks_AllBooks_Nodes_Authors_Author : IAllBooks_AllBooks_Nodes_Authors
     {
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUserResult : global::System.IEquatable<CreateUserResult>, ICreateUserResult
     {
         public CreateUserResult(global::GraphQLClient.Client.ICreateUser_CreateUser? createUser)
@@ -542,7 +542,7 @@ namespace GraphQLClient.Client
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUser_CreateUser_User : global::System.IEquatable<CreateUser_CreateUser_User>, ICreateUser_CreateUser_User
     {
         public CreateUser_CreateUser_User(global::System.Guid id, global::System.String name)
@@ -607,22 +607,22 @@ namespace GraphQLClient.Client
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface ICreateUserResult
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface ICreateUserResult
     {
         public global::GraphQLClient.Client.ICreateUser_CreateUser? CreateUser { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface ICreateUser_CreateUser
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface ICreateUser_CreateUser
     {
         public global::System.Guid Id { get; }
 
         public global::System.String Name { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface ICreateUser_CreateUser_User : ICreateUser_CreateUser
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface ICreateUser_CreateUser_User : ICreateUser_CreateUser
     {
     }
 
@@ -656,7 +656,7 @@ namespace GraphQLClient.Client
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooksQueryDocument : global::StrawberryShake.IDocument
     {
         private AllBooksQueryDocument()
@@ -707,7 +707,7 @@ namespace GraphQLClient.Client
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooksQuery : global::GraphQLClient.Client.IAllBooksQuery
     {
         private readonly global::StrawberryShake.IOperationExecutor<IAllBooksResult> _operationExecutor;
@@ -775,8 +775,8 @@ namespace GraphQLClient.Client
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface IAllBooksQuery : global::StrawberryShake.IOperationRequestFactory
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface IAllBooksQuery : global::StrawberryShake.IOperationRequestFactory
     {
         global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAllBooksResult>> ExecuteAsync(global::System.Threading.CancellationToken cancellationToken = default);
         global::System.IObservable<global::StrawberryShake.IOperationResult<IAllBooksResult>> Watch(global::StrawberryShake.ExecutionStrategy? strategy = null);
@@ -797,7 +797,7 @@ namespace GraphQLClient.Client
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUserMutationDocument : global::StrawberryShake.IDocument
     {
         private CreateUserMutationDocument()
@@ -833,7 +833,7 @@ namespace GraphQLClient.Client
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUserMutation : global::GraphQLClient.Client.ICreateUserMutation
     {
         private readonly global::StrawberryShake.IOperationExecutor<ICreateUserResult> _operationExecutor;
@@ -900,8 +900,8 @@ namespace GraphQLClient.Client
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface ICreateUserMutation : global::StrawberryShake.IOperationRequestFactory
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface ICreateUserMutation : global::StrawberryShake.IOperationRequestFactory
     {
         global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<ICreateUserResult>> ExecuteAsync(global::System.String username, global::System.Threading.CancellationToken cancellationToken = default);
         global::System.IObservable<global::StrawberryShake.IOperationResult<ICreateUserResult>> Watch(global::System.String username, global::StrawberryShake.ExecutionStrategy? strategy = null);
@@ -910,7 +910,7 @@ namespace GraphQLClient.Client
     /// <summary>
     /// Represents the LibraryClient GraphQL client
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class LibraryClient : global::GraphQLClient.Client.ILibraryClient
     {
         private readonly global::GraphQLClient.Client.IAllBooksQuery _allBooks;
@@ -929,8 +929,8 @@ namespace GraphQLClient.Client
     /// <summary>
     /// Represents the LibraryClient GraphQL client
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
-    public interface ILibraryClient
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
+    public partial interface ILibraryClient
     {
         global::GraphQLClient.Client.IAllBooksQuery AllBooks { get; }
 
@@ -940,7 +940,7 @@ namespace GraphQLClient.Client
 
 namespace GraphQLClient.Client.State
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class BookEntity
     {
         public BookEntity(global::System.Guid id = default !, global::System.String isbn = default !, global::System.String name = default !, global::System.Collections.Generic.IReadOnlyList<global::GraphQLClient.Client.State.AuthorData> authors = default !)
@@ -960,7 +960,7 @@ namespace GraphQLClient.Client.State
         public global::System.Collections.Generic.IReadOnlyList<global::GraphQLClient.Client.State.AuthorData> Authors { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class UserEntity
     {
         public UserEntity(global::System.Guid id = default !, global::System.String name = default !)
@@ -974,7 +974,7 @@ namespace GraphQLClient.Client.State
         public global::System.String Name { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooksResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::GraphQLClient.Client.AllBooksResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1099,7 +1099,7 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooksResultInfo : global::StrawberryShake.IOperationResultDataInfo
     {
         private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
@@ -1121,7 +1121,7 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooks_AllBooks_Nodes_BookFromBookEntityMapper : global::StrawberryShake.IEntityMapper<global::GraphQLClient.Client.State.BookEntity, AllBooks_AllBooks_Nodes_Book>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1172,7 +1172,7 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUserResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::GraphQLClient.Client.CreateUserResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1220,7 +1220,7 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUserResultInfo : global::StrawberryShake.IOperationResultDataInfo
     {
         private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
@@ -1242,7 +1242,7 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUser_CreateUser_UserFromUserEntityMapper : global::StrawberryShake.IEntityMapper<global::GraphQLClient.Client.State.UserEntity, CreateUser_CreateUser_User>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1262,7 +1262,7 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooksBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::GraphQLClient.Client.IAllBooksResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1309,7 +1309,14 @@ namespace GraphQLClient.Client.State
             }
             else
             {
-                errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
             }
 
             return new global::StrawberryShake.OperationResult<IAllBooksResult>(data?.Result, data?.Info, _resultDataFactory, errors);
@@ -1476,7 +1483,7 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class CreateUserBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::GraphQLClient.Client.ICreateUserResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1521,7 +1528,14 @@ namespace GraphQLClient.Client.State
             }
             else
             {
-                errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
             }
 
             return new global::StrawberryShake.OperationResult<ICreateUserResult>(data?.Result, data?.Info, _resultDataFactory, errors);
@@ -1589,7 +1603,7 @@ namespace GraphQLClient.Client.State
     }
 
     ///<summary>A connection to a list of items.</summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AllBooksConnectionData
     {
         public AllBooksConnectionData(global::System.String __typename, global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId>? nodes = default !, global::GraphQLClient.Client.State.PageInfoData? pageInfo = default !)
@@ -1609,7 +1623,7 @@ namespace GraphQLClient.Client.State
     }
 
     ///<summary>Information about pagination in a connection.</summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class PageInfoData
     {
         public PageInfoData(global::System.String __typename, global::System.String? endCursor = default !, global::System.Boolean? hasNextPage = default !, global::System.Boolean? hasPreviousPage = default !, global::System.String? startCursor = default !)
@@ -1636,7 +1650,7 @@ namespace GraphQLClient.Client.State
         public global::System.String? StartCursor { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class AuthorData
     {
         public AuthorData(global::System.String __typename, global::System.String? name = default !)
@@ -1650,7 +1664,7 @@ namespace GraphQLClient.Client.State
         public global::System.String? Name { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class LibraryClientEntityIdFactory : global::StrawberryShake.IEntityIdSerializer
     {
         private static readonly global::System.Text.Json.JsonWriterOptions _options = new global::System.Text.Json.JsonWriterOptions()
@@ -1660,18 +1674,18 @@ namespace GraphQLClient.Client.State
             global::System.String __typename = obj.GetProperty("__typename").GetString()!;
             return __typename switch
             {
-            "Book" => ParseBookEntityId(obj, __typename), "User" => ParseUserEntityId(obj, __typename), _ => throw new global::System.NotSupportedException()}
-
-            ;
+                "Book" => ParseBookEntityId(obj, __typename),
+                "User" => ParseUserEntityId(obj, __typename),
+                _ => throw new global::System.NotSupportedException()};
         }
 
         public global::System.String Format(global::StrawberryShake.EntityId entityId)
         {
             return entityId.Name switch
             {
-            "Book" => FormatBookEntityId(entityId), "User" => FormatUserEntityId(entityId), _ => throw new global::System.NotSupportedException()}
-
-            ;
+                "Book" => FormatBookEntityId(entityId),
+                "User" => FormatUserEntityId(entityId),
+                _ => throw new global::System.NotSupportedException()};
         }
 
         private global::StrawberryShake.EntityId ParseBookEntityId(global::System.Text.Json.JsonElement obj, global::System.String type)
@@ -1709,10 +1723,10 @@ namespace GraphQLClient.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public partial class LibraryClientStoreAccessor : global::StrawberryShake.StoreAccessor
     {
-        public LibraryClientStoreAccessor(global::StrawberryShake.IOperationStore operationStore, global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer entityIdSerializer, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory> requestFactories, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory> resultDataFactories): base(operationStore, entityStore, entityIdSerializer, requestFactories, resultDataFactories)
+        public LibraryClientStoreAccessor(global::StrawberryShake.IOperationStore operationStore, global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer entityIdSerializer, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory> requestFactories, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory> resultDataFactories) : base(operationStore, entityStore, entityIdSerializer, requestFactories, resultDataFactories)
         {
         }
     }
@@ -1720,7 +1734,7 @@ namespace GraphQLClient.Client.State
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.6.0.0")]
     public static partial class LibraryClientServiceCollectionExtensions
     {
         public static global::StrawberryShake.IClientBuilder<global::GraphQLClient.Client.State.LibraryClientStoreAccessor> AddLibraryClient(this global::Microsoft.Extensions.DependencyInjection.IServiceCollection services, global::StrawberryShake.ExecutionStrategy strategy = global::StrawberryShake.ExecutionStrategy.NetworkOnly)

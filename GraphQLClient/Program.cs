@@ -25,8 +25,23 @@ namespace GraphQLClient
             var result = await client.AllBooks.ExecuteAsync();
             var data = result.Data;
 
+            data.AllBooks.Nodes[0].Something = "test";
+            var s = data.AllBooks.Nodes[0].Something;
+
             //var result1 = await client.CreateUser.ExecuteAsync("abcd");
             //var data1 = result1.Data;
         }
+    }
+}
+
+namespace GraphQLClient.Client
+{
+    public partial interface IAllBooks_AllBooks_Nodes
+    {
+        public string Something { get; set; }
+    }
+    public partial class AllBooks_AllBooks_Nodes_Book
+    {
+        public string Something { get; set; }
     }
 }
