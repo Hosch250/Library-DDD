@@ -1,0 +1,276 @@
+"""
+The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`.
+"""
+directive @defer(
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to.
+  """
+  label: String
+
+  """
+  Deferred when true.
+  """
+  if: Boolean
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`.
+"""
+directive @stream(
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to.
+  """
+  label: String
+
+  """
+  The initial elements that shall be send down to the consumer.
+  """
+  initialCount: Int!
+
+  """
+  Streamed when true.
+  """
+  if: Boolean
+) on FIELD
+
+type Query {
+  allBooks(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+    where: BookFilterInput
+    order: [BookSortInput!]
+  ): AllBooksConnection
+  book(id: UUID!): Book
+  user(id: UUID!): User
+}
+
+type Mutation {
+  createUser(name: String!): User
+  checkoutBook(userId: UUID!, bookId: UUID!): User
+  returnBook(userId: UUID!, bookId: UUID!): User
+}
+
+input BookFilterInput {
+  and: [BookFilterInput!]
+  or: [BookFilterInput!]
+  id: ComparableGuidOperationFilterInput
+  isbn: StringOperationFilterInput
+  name: StringOperationFilterInput
+  publishedOn: ComparableDateTimeOperationFilterInput
+  publisher: PublishingHouseFilterInput
+  authors: ListFilterInputTypeOfAuthorFilterInput
+}
+
+input BookSortInput {
+  id: SortEnumType
+  isbn: SortEnumType
+  name: SortEnumType
+  publishedOn: SortEnumType
+  publisher: PublishingHouseSortInput
+}
+
+"""
+A connection to a list of items.
+"""
+type AllBooksConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [AllBooksEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [Book!]
+}
+
+input ComparableGuidOperationFilterInput {
+  eq: UUID
+  neq: UUID
+  in: [UUID!]
+  nin: [UUID!]
+  gt: UUID
+  ngt: UUID
+  gte: UUID
+  ngte: UUID
+  lt: UUID
+  nlt: UUID
+  lte: UUID
+  nlte: UUID
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input ComparableDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime!]
+  nin: [DateTime!]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input PublishingHouseFilterInput {
+  and: [PublishingHouseFilterInput!]
+  or: [PublishingHouseFilterInput!]
+  name: StringOperationFilterInput
+}
+
+input ListFilterInputTypeOfAuthorFilterInput {
+  all: AuthorFilterInput
+  none: AuthorFilterInput
+  some: AuthorFilterInput
+  any: Boolean
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+input PublishingHouseSortInput {
+  name: SortEnumType
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  Indicates whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Indicates whether more edges exist prior the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+}
+
+type Book {
+  id: UUID!
+  isbn: String!
+  name: String!
+  publishedOn: DateTime!
+  publisher: PublishingHouse!
+  authors: [Author!]!
+}
+
+"""
+An edge in a connection.
+"""
+type AllBooksEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Book!
+}
+
+input AuthorFilterInput {
+  and: [AuthorFilterInput!]
+  or: [AuthorFilterInput!]
+  name: StringOperationFilterInput
+  birthDate: ComparableNullableOfDateTimeOperationFilterInput
+  deathDate: ComparableNullableOfDateTimeOperationFilterInput
+}
+
+input ComparableNullableOfDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+scalar UUID
+
+"""
+The `DateTime` scalar represents an ISO-8601 compliant date time type.
+"""
+scalar DateTime
+
+type User {
+  id: UUID!
+  name: String!
+  isInGoodStanding: Boolean!
+  books: [CheckedOutBook!]!
+}
+
+type PublishingHouse {
+  name: String!
+}
+
+type Author {
+  name: String!
+  birthDate: DateTime
+  deathDate: DateTime
+}
+
+type CheckedOutBook {
+  bookId: UUID!
+  checkedOutOn: DateTime!
+  returnBy: DateTime!
+}
