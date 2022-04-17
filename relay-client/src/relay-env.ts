@@ -6,8 +6,9 @@ import {
   Store,
   Variables,
 } from 'relay-runtime'
+import envs from './env'
 
-const url = 'https://localhost:44377/graphql/'
+const url = envs.GraphQLEndpoint
 
 function fetchQuery(operation: RequestParameters, variables: Variables) {
   return fetch(url, {
