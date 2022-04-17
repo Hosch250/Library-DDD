@@ -1,6 +1,6 @@
 import { useFragment } from 'react-relay'
 import { BooksPage_query$key } from './__generated__/BooksPage_query.graphql'
-import { graphql } from 'babel-plugin-relay/macro';
+import { graphql } from 'babel-plugin-relay/macro'
 
 interface Props {
   query: BooksPage_query$key | null
@@ -22,7 +22,7 @@ function BooksPage({ query }: Props) {
 
   return (
     <div className="BooksPage">
-      {data?.nodes?.map(m => (
+      {data?.nodes?.map((m) => (
         <div key={m.id}>
           {m.name} - {m.isbn}
         </div>
@@ -32,17 +32,3 @@ function BooksPage({ query }: Props) {
 }
 
 export default BooksPage
-
-// export default createFragmentContainer(BooksPage, {
-//   query: graphql`
-//     fragment BooksPage_query on RepositoryOwner {
-//       repositories(first: 25, orderBy: { field: CREATED_AT, direction: DESC }) {
-//         nodes {
-//           name
-//           stargazerCount
-//           isFork
-//         }
-//       }
-//     }
-//   `,
-// })
