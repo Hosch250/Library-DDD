@@ -1,10 +1,8 @@
 import './App.css'
 import {
   loadQuery,
-  PreloadedQuery,
   QueryRenderer,
   usePreloadedQuery,
-  useQueryLoader,
 } from 'react-relay'
 import BooksPage from './BooksPage'
 import environment from './relay-env'
