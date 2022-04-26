@@ -1,0 +1,8 @@
+schema: ./data/schema.graphql
+documents: 'src/**/*.tsx'
+generates:
+  types-and-hooks.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

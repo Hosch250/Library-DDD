@@ -1,6 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import logo from './logo.svg'
+import './App.css'
+import { gql } from '@apollo/client'
+
+const x = gql`
+  fragment BooksPage on AllBooksConnection {
+    nodes {
+      id
+      isbn
+      name
+    }
+  }
+
+  query App {
+    allBooks {
+      ...BooksPage
+    }
+  }
+`
 
 function App() {
   return (
@@ -20,7 +37,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
