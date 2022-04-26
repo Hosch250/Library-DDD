@@ -248,12 +248,12 @@ export type User = {
   name: Scalars['String'];
 };
 
-export type BooksPageFragment = { __typename?: 'AllBooksConnection', nodes?: Array<{ __typename?: 'Book', id: any, isbn: string, name: string }> | null };
-
 export type AppQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AppQuery = { __typename?: 'Query', allBooks?: { __typename?: 'AllBooksConnection', nodes?: Array<{ __typename?: 'Book', id: any, isbn: string, name: string }> | null } | null };
+
+export type BooksPageFragment = { __typename?: 'AllBooksConnection', nodes?: Array<{ __typename?: 'Book', id: any, isbn: string, name: string }> | null };
 
 export const BooksPageFragmentDoc = gql`
     fragment BooksPage on AllBooksConnection {

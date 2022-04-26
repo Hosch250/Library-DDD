@@ -1,17 +1,8 @@
-import React from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { gql } from '@apollo/client'
+import { useAppQuery } from '../types-and-hooks'
 
-const x = gql`
-  fragment BooksPage on AllBooksConnection {
-    nodes {
-      id
-      isbn
-      name
-    }
-  }
-
+gql`
   query App {
     allBooks {
       ...BooksPage
@@ -20,22 +11,19 @@ const x = gql`
 `
 
 function App() {
+  const { data, loading, error } = useAppQuery()
+
+  if (error) {
+    return <div>Error!</div>
+  }
+
+  if (loading) {
+    return <div>Loading..</div>
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <BooksPage query={data.allBooks} />
     </div>
   )
 }
