@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders book names 1`] = `
+<div
+  className="BooksPage"
+>
+  <div>
+    Book 1
+     - 
+    123-123456789
+  </div>
+  <div>
+    Book 2
+     - 
+    987-123456789
+  </div>
+</div>
+`;

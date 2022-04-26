@@ -1,6 +1,6 @@
-import { QueryRenderer } from 'react-relay'
+import { Environment, QueryRenderer } from 'react-relay'
 import BooksPage from './BooksPage'
-import environment from './relay-env'
+import defaultEnvironment from './relay-env'
 import type {
   App_Query,
   App_Query$data,
@@ -20,13 +20,13 @@ interface Props {
   props: App_Query$data | null
 }
 
-function App({ error, props }: Props) {
+export function App({ error, props }: Props) {
   if (error) {
     return <div>Error!</div>
   }
 
   if (!props) {
-    return <div>Loading..</div>
+    return <div>Loading...</div>
   }
 
   return (
@@ -36,10 +36,14 @@ function App({ error, props }: Props) {
   )
 }
 
-function AppRoot() {
+export interface AppRootProps {
+  environment?: Environment
+}
+
+function AppRoot({ environment }: AppRootProps) {
   return (
     <QueryRenderer<App_Query>
-      environment={environment}
+      environment={environment ?? defaultEnvironment}
       query={query}
       render={(renderProps) => <App {...renderProps} />}
       variables={{}}
