@@ -1,6 +1,6 @@
-import './App.css'
 import { gql } from '@apollo/client'
 import { useAppQuery } from '../types-and-hooks'
+import BooksPage from './BooksPage'
 
 gql`
   query App {
@@ -18,12 +18,12 @@ function App() {
   }
 
   if (loading) {
-    return <div>Loading..</div>
+    return <div>Loading...</div>
   }
 
   return (
     <div className="App container">
-      <BooksPage query={data.allBooks} />
+      <BooksPage data={data?.allBooks} />
     </div>
   )
 }

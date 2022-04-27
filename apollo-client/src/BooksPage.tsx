@@ -12,13 +12,13 @@ gql`
 `
 
 interface Props {
-  query: BooksPageFragment | null
+  data?: BooksPageFragment | null
 }
 
-function BooksPage({ query }: Props) {
+function BooksPage({ data }: Props) {
   return (
     <div className="BooksPage">
-      {query?.nodes?.map((m) => (
+      {data?.nodes?.map((m) => (
         <div key={m.id}>
           {m.name} - {m.isbn}
         </div>
