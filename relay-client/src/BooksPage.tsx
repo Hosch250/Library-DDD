@@ -20,8 +20,6 @@ function BooksPage({ query }: Props) {
     query,
   )
 
-  console.log(JSON.stringify(data))
-
   return (
     <div className="BooksPage">
       {data?.nodes?.map((m) => (

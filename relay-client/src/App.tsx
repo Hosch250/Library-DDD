@@ -1,11 +1,12 @@
 import { Environment, QueryRenderer } from 'react-relay'
-import BooksPage from './BooksPage'
 import defaultEnvironment from './relay-env'
 import type {
   App_Query,
   App_Query$data,
 } from './__generated__/App_Query.graphql'
 import { graphql } from 'babel-plugin-relay/macro'
+import BooksPage from './BooksPage'
+import CreateUser from './CreateUser'
 
 const query = graphql`
   query App_Query {
@@ -31,6 +32,7 @@ export function App({ error, props }: Props) {
 
   return (
     <div className="App container">
+      <CreateUser />
       <BooksPage query={props.allBooks} />
     </div>
   )
