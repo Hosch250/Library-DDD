@@ -6,15 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Client\allBooks.graphql" />
+    <None Remove="Client\App.graphql" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.6.0" />
     <PackageReference Include="StrawberryShake.Transport.Http" Version="12.6.0" />
+	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+	<PackageReference Include="NUnit" Version="3.13.2" />
+	<PackageReference Include="NUnit3TestAdapter" Version="4.0.0">
+	  <TreatAsUsed>true</TreatAsUsed>
+	</PackageReference>
   </ItemGroup>
 
 </Project>

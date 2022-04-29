@@ -1,0 +1,13 @@
+fragment BooksPage on AllBooksConnection {
+  nodes {
+    id
+    isbn
+    name
+  }
+}
+
+query App {
+  allBooks {
+    ...BooksPage
+  }
+}
