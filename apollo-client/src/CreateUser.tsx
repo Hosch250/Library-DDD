@@ -1,15 +1,17 @@
-import { useMutation } from 'react-relay'
-import { graphql } from 'babel-plugin-relay/macro'
+import { gql } from '@apollo/client'
+import { useCreateUserMutation } from './types-and-hooks'
+
+gql`
+  mutation CreateUser($username: String!) {
+    createUser(name: $username) {
+      id
+      name
+    }
+  }
+`
 
 function CreateUser() {
-  const [command] = useMutation(graphql`
-    mutation CreateUserMutation($username: String!) {
-      createUser(name: $username) {
-        id
-        name
-      }
-    }
-  `)
+  const [command] = useCreateUserMutation()
 
   const createUser = () =>
     command({

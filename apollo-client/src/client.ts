@@ -4,9 +4,10 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client'
+import envs from './env'
 
 const httpLink = new HttpLink({
-  uri: 'https://localhost:44377/graphql',
+  uri: envs.GraphQLEndpoint,
 })
 
 export const client = new ApolloClient({

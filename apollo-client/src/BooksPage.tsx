@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { BooksPageFragment } from '../types-and-hooks'
+import { BooksPageFragment } from './types-and-hooks'
 
 gql`
   fragment BooksPage on AllBooksConnection {

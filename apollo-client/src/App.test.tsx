@@ -1,5 +1,5 @@
-import { AppDocument, BooksPageFragment } from '../types-and-hooks'
-import App from './App'
+import { AppDocument, BooksPageFragment } from './types-and-hooks'
+import { App } from './App'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 import { screen, render, act } from '@testing-library/react'
 
