@@ -26,65 +26,65 @@ namespace Library.GraphQL
 
         [UseFirstOrDefault]
         [UseProjection]
-        public async Task<IExecutable<User>> CreateUser([Service] IMongoCollection<User> collection, string name)
+        public async Task<CreateUserPayload> CreateUser([Service] IMongoCollection<User> collection, CreateUserInput input)
         {
             if (!featureFlags.EnableUser)
             {
-                throw new NotImplementedException("Query not implemented");
+                throw new NotImplementedException("Mutation not implemented");
             }
 
             try
             {
-                await userApplication.CreateUser(name);
+                var user = await userApplication.CreateUser(input.Name);
+                return new CreateUserPayload(user);
             }
             catch (FluentValidation.ValidationException ex)
             {
                 throw new QueryException(ex.Message);
             }
-
-            return collection.Find(x => x.Name == name).AsExecutable();
         }
 
-        [UseFirstOrDefault]
         [UseProjection]
-        public async Task<IExecutable<User>> CheckoutBook([Service] IMongoCollection<User> collection, Guid userId, Guid bookId)
+        public async Task<CheckoutBookPayload> CheckoutBook([Service] IUserApplication userApp, CheckoutBookInput input)
         {
             if (!featureFlags.EnableUser)
             {
-                throw new NotImplementedException("Query not implemented");
+                throw new NotImplementedException("Mutation not implemented");
             }
 
             try
             {
-                await userApplication.CheckoutBook(userId, bookId);
+                await userApplication.CheckoutBook(input.UserId, input.BookId);
             }
             catch(FluentValidation.ValidationException ex)
             {
                 throw new QueryException(ex.Message);
             }
 
-            return collection.Find(x => x.Id == userId).AsExecutable();
+            var user = await userApp.Get(input.UserId);
+            return new CheckoutBookPayload(user);
         }
 
         [UseFirstOrDefault]
         [UseProjection]
-        public async Task<IExecutable<User>> ReturnBook([Service] IMongoCollection<User> collection, Guid userId, Guid bookId)
+        public async Task<ReturnBookPayload> ReturnBook([Service] IUserApplication userApp, ReturnBookInput input)
         {
             if (!featureFlags.EnableUser)
             {
-                throw new NotImplementedException("Query not implemented");
+                throw new NotImplementedException("Mutation not implemented");
             }
 
             try
             {
-                await userApplication.ReturnBook(userId, bookId);
+                await userApplication.ReturnBook(input.UserId, input.BookId);
             }
             catch (FluentValidation.ValidationException ex)
             {
                 throw new QueryException(ex.Message);
             }
 
-            return collection.Find(x => x.Id == userId).AsExecutable();
+            var user = await userApp.Get(input.UserId);
+            return new ReturnBookPayload(user);
         }
     }
 }

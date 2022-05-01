@@ -65,6 +65,8 @@ namespace Library
             services.AddSingleton(
             services
                 .AddGraphQLServer()
+                .AddGlobalObjectIdentification()
+                .AddQueryFieldToMutationPayloads()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
                 .AddMongoDbFiltering()

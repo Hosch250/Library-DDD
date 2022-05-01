@@ -2,6 +2,7 @@
 using HotChocolate.Data;
 using HotChocolate.Execution;
 using HotChocolate.Types;
+using HotChocolate.Types.Relay;
 using Library.ApiContracts;
 using Library.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
@@ -36,8 +37,7 @@ namespace Library.GraphQL
         [UseFirstOrDefault]
         [UseProjection]
         public IExecutable<Book> GetBook(
-            [Service] IMongoCollection<Book> collection,
-            Guid id)
+            [Service] IMongoCollection<Book> collection, [ID] Guid id)
         {
             if (!featureFlags.EnableBook)
             {
@@ -47,32 +47,10 @@ namespace Library.GraphQL
             return collection.Find(x => x.Id == id).AsExecutable();
         }
 
-        //public async Task<List<Book>> GetAllBooks()
-        //{
-        //    if (!featureFlags.EnableBook)
-        //    {
-        //        throw new NotImplementedException("Query not implemented");
-        //    }
-
-        //    var books = await bookApplication.GetAll();
-        //    return books;
-        //}
-
-        //public async Task<Book?> GetBook(Guid bookId)
-        //{
-        //    if (!featureFlags.EnableBook)
-        //    {
-        //        throw new NotImplementedException("Query not implemented");
-        //    }
-
-        //    var book = await bookApplication.Get(bookId);
-        //    return book;
-        //}
-
         [UseFirstOrDefault]
         [UseProjection]
         public IExecutable<User> GetUser(
-            [Service] IMongoCollection<User> collection, Guid id)
+            [Service] IMongoCollection<User> collection, [ID] Guid id)
         {
             if (!featureFlags.EnableUser)
             {
